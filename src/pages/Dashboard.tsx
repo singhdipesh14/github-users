@@ -1,12 +1,23 @@
-import React from "react"
+import React, { useContext } from "react"
 import { Info, Repos, User, Search, Navbar } from "../components"
 import loadingImage from "../images/preloader.gif"
 import { GithubContext } from "../context/context"
 
-const Dashoard = () => {
+const Dashoard: React.FC = () => {
+	const { loading } = useContext(GithubContext)
 	return (
 		<main>
-			<h2>Dashboard Page</h2>
+			<Navbar></Navbar>
+			<Search></Search>
+			{loading ? (
+				<img src={loadingImage} alt="loading" className="loading-img" />
+			) : (
+				<>
+					<Info></Info>
+					<User></User>
+					<Repos></Repos>
+				</>
+			)}
 		</main>
 	)
 }
